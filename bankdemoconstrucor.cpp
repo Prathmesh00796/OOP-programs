@@ -8,23 +8,25 @@ using namespace std;
 class BankAccount
 {
 private:
-    // BankAccount Class 
+    
     string accountHolder;
     int accountNumber;
     string accountType;
     double balance;
 
 public:
-    // BankAccount Class member functions
+   
     BankAccount()
-    { // Default Constructor
+    {  
+	    // Default Constructor
         accountHolder = '-';
         accountNumber = 0;
         accountType = '-';
         balance = 0;
     }
     BankAccount(string accountHolder, int accountNumber, string accountType, double balance)
-    { // Parameterized Constrctor
+    { 
+	    // Parameterized Constrctor
         this->accountHolder = accountHolder;
         this->accountNumber = accountNumber;
         this->accountType = accountType;
@@ -32,38 +34,39 @@ public:
     }
     string getAccountHolder()
     { 
-	// getter function
+	
         return accountHolder;
     }
     int getAccountNumber()
     { 
-	// getter function
+	
         return accountNumber;
     }
     string getAccountType()
     { 
-	// getter function
+	
         return accountType;
     }
     double getBalance()
     { 
-	// getter function
+	
         return balance;
     }
     void setAccountType(string newType)
     { 
-	// mutator/setter function
+	
         accountType = newType;
         cout << "Updated Account Type to " << newType << endl << endl;
     }
 
-    // Functional methods
+   
     void deposit(double amount)
     {
-        // if deposite amount was 0 or negative then the deposite function will not work
+       
         if (amount > 0)
         {
-            cout << "-------------------------------" << endl;
+            
+	cout << "-------------------------------" << endl;
             cout << "Balance         " <<setw(6)<<right<< balance <<endl;
             balance += amount;
             cout << "Depositing      " <<setw(6)<<right<< amount << endl;
@@ -74,7 +77,7 @@ public:
     }
     void withdraw(double amount)
     {
-        // should not withdrow if the withdrawal amount was greater then the balance
+       
         if (amount <= balance)
         {
             cout << "-------------------------------" << endl;
@@ -87,7 +90,7 @@ public:
         }
     }
     void displayAccountDetails()
-    { // getter function
+    { 
         cout << "Account Holder: " << accountHolder << endl
              << "Account Number: " << accountNumber << endl
              << "Account Type  : " << accountType << endl
@@ -103,12 +106,11 @@ int main()
     double balance;
 
     BankAccount account1;
-    // default construction call
+   
     account1.displayAccountDetails();
 
     cout << "Enter Name: ";
     getline(cin,accountHolder);
-    // srand(time(0)) statement helps to generate every time a random number
     srand(time(0));
     accountNumber = 100000 + rand() % 899999; // generates a random number from 100000 to 999999
     accountType = '-';
@@ -160,7 +162,7 @@ int main()
     cin >> withdrawAmount;
     account2.withdraw(withdrawAmount);
 
-    // getter function call for account2 object
+   
     account2.getAccountHolder();
     account2.getAccountNumber();
     account2.getAccountType();
@@ -169,10 +171,10 @@ int main()
     string newAccountType;
     cout << "Enter new account type: ";
     cin >> newAccountType;
-    // mutator function to update account type variable value
+   
     account2.setAccountType(newAccountType);
 
-    // getter function call for account2 object
+   
     account2.displayAccountDetails();
 
     return 0;
