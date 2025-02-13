@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+
+class Person {
+public:
+    string name;
+    
+	void setName(string personName) {
+        name = personName;
+    }
+    class Address {
+    public:
+        string addressLine;
+        void setAddress(string addr) {
+            addressLine = addr;
+        }
+    };
+	 Address addr;
+    
+      void showInfo() {
+        cout << "Name: " << name << endl;
+        cout << "Address in Person class (from Address): " << addr.addressLine << endl;
+    }
+};
+
+int main() {
+    Person personObj;
+    personObj.setName("XYZ");
+
+    Person::Address addressObj;
+    addressObj.setAddress("ICH, INDIA");
+
+    personObj.addr = addressObj;
+    personObj.showInfo();
+
+    return 0;
+}
+
