@@ -1,0 +1,31 @@
+#include <iostream>
+
+using namespace std;
+
+class Date {
+    int date, month, year;
+
+public:
+    Date() : date(1), month(1), year(2000) {}  
+    Date(int d, int m, int y) : date(d), month(m), year(y) {}  
+
+    friend istream& operator>>(istream &in, Date &d);
+    friend ostream& operator<<(ostream &out, const Date &d);
+};
+
+istream& operator>>(istream &in, Date &d) {
+    in >> d.date >> d.month >> d.year;
+    return in;
+}
+
+ostream& operator<<(ostream &out, const Date &d) {
+    out << "Entered date is: " << d.date << "/" << d.month << "/" << d.year;
+    return out;
+}
+int main() {
+    Date d;
+    cout << "Enter date (day month year): ";
+    cin >> d;
+    cout << d;
+    return 0;
+}
