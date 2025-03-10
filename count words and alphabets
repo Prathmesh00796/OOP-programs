@@ -1,0 +1,36 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+using namespace std;
+
+int main()
+{
+    fstream f;
+    f.open("paragraph.txt", ios::out);
+
+    string paragraph;
+    cout << "Enter a paragraph: ";
+    cin.ignore();
+    getline(cin, paragraph);
+    f << paragraph << "\n";
+    f.close();
+
+    f.open("paragraph.txt", ios::in);
+    getline(f, paragraph);
+
+    int wordCount = 0, alphabetCount = 0;
+    bool inWord = false;
+    for (int i = 0; i < paragraph.length(); i++)
+    {
+        char c = paragraph[i];
+        if (isalpha(c)) alphabetCount++;
+        if (c != ' ' && !inWord) { wordCount++; inWord = true; }
+        if (c == ' ') inWord = false;
+    }
+
+    cout << "Total words: " << wordCount << endl;
+    cout << "Total alphabets: " << alphabetCount << endl;
+
+    f.close();
+    return 0;
+}
