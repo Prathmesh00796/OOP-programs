@@ -1,0 +1,52 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+class student
+{
+    public:
+        int roll;
+        char name[20];
+        float per;
+
+        void write()
+        {
+            fstream f;
+            f.open("student.txt", ios::app); 
+            
+            cout << "Enter Roll, Name, Percentage: ";
+            cin >> roll >> name >> per;
+
+            f << roll << "\t" << name << "\t" << per << "\n";
+            f.close();
+        }
+
+        void read()
+        {
+            fstream f;
+            f.open("student.txt", ios::in);  
+
+            if (!f) {
+                cout << "File could not be opened!" << endl;
+                return;
+            }
+
+            cout << "Roll\tName\tPercentage\n";
+            while (f >> roll >> name >> per)  
+            {
+                cout << roll << "\t" << name << "\t" << per << "\n";
+            }
+
+            f.close(); 
+        }
+};
+
+int main()
+{
+    student s;
+    s.write();  
+    s.write();  
+    s.read();   
+
+    return 0;  
+}
