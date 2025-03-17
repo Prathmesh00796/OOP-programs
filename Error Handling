@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    float b, c;
+    cout << "Enter Two Numbers: ";
+    cin >> b >> c;
+
+    try
+    {
+        if(c == 0) throw "Divide By Zero Error";
+        float result = b / c;
+        cout << "Answer: " << result << endl;
+    }
+    catch(const char* str)
+    {
+        cout << str << endl;
+    }
+
+    return 0;
+}
