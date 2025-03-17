@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int age;
+    cout << "Enter Your Age: ";
+    cin >> age;
+    
+    try
+    {
+        if(age <= 0) throw "Age is negative or zero";  
+        cout << "Age is: " << age << endl;
+    }
+    catch(const char* str) 
+    {
+        cout << "Exception: " << str << endl;
+    }
+    catch(const int age) 
+    {
+        cout << "Invalid Age: " << age << endl;
+    }
+    
+    return 0;
+}
