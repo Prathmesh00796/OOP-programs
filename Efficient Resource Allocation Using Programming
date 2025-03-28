@@ -1,0 +1,60 @@
+#include <iostream>
+#include <algorithm>
+#include <string>
+
+using namespace std;
+
+struct Job {
+    string name;
+    int resources;
+    int profit;
+    double ratio;
+};
+
+int main() {
+    Job jobs[] = {
+        {"Job1", 2, 50, 0.0},
+        {"Job2", 3, 60, 0.0},
+        {"Job3", 4, 70, 0.0},
+        {"Job4", 5, 100, 0.0}
+    };
+    int numJobs = sizeof(jobs) / sizeof(jobs[0]);
+
+    int totalResources = 10;
+    string allocatedJobs[numJobs]; 
+    int allocatedJobsCount = 0;
+    int totalProfit = 0;
+
+   
+    for (int i = 0; i < numJobs; ++i) {
+        jobs[i].ratio = static_cast<double>(jobs[i].profit) / jobs[i].resources;
+    }
+
+    
+    sort(jobs, jobs + numJobs, [](const Job& a, const Job& b) {
+        return a.ratio > b.ratio;
+    });
+
+    
+    for (int i = 0; i < numJobs; ++i) {
+        if (totalResources >= jobs[i].resources) {
+            totalResources -= jobs[i].resources;
+            totalProfit += jobs[i].profit;
+            allocatedJobs[allocatedJobsCount++] = jobs[i].name;
+        }
+    }
+
+   
+    cout << "Allocated Jobs: [";
+    for (int i = 0; i < allocatedJobsCount; ++i) {
+        cout << "'" << allocatedJobs[i] << "'";
+        if (i < allocatedJobsCount - 1) {
+            cout << ", ";
+        }
+    }
+    cout << "]" << endl;
+
+    cout << "Total Profit: " << totalProfit << endl;
+
+    return 0;
+}
