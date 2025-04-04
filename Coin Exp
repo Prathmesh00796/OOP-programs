@@ -1,0 +1,52 @@
+#include<stdio.h>
+
+int interval(int start[], int end[], int n){
+	int i,j,temp;
+	int interval[n][2];
+	for(i=0; i<n; i++){
+		for(j=i+1; j<n; j++){
+			if(end[i]>end[j]){
+				temp = end[j];
+				end[j] = end[i];
+				end[i] = temp;
+				
+				temp = start[j];
+				start[j] = start[i];
+				start[i] = temp;
+			}
+		}
+	}
+	for(i=0; i<n; i++){
+		interval[i][0] = start[i];
+		interval[i][1] = end[i];
+	}
+	
+	int lastEndTime = interval[0][1];
+	printf("Selected intervals : \n");
+	printf("(%d,%d)\n",interval[0][0],interval[0][1]);	
+	
+	for(i=1; i<n; i++){
+	
+		if(interval[i][0]>=lastEndTime){
+			printf("(%d,%d)\n",interval[i][0],interval[i][1]);
+			lastEndTime = interval[i][1];
+		}
+
+	}
+}
+
+int main()
+{
+	int start[50],end[50];
+	int i,n;
+	
+	printf("Enter number of intervals : ");
+	scanf("%d",&n);
+	
+	for(i=0; i<n; i++){
+		printf("Enter start and end time of interval for index[%d]: ",i);
+		scanf("%d%d",&start[i],&end[i]);
+	}
+	
+	interval(start,end,n);
+}
