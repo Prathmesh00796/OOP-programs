@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+
+template <typename T>
+T findMax(T a, T b) {
+    return (a > b) ? a : b;
+}
+
+template <typename T>
+class Calculator {
+private:
+    T num1, num2;
+public:
+   
+    Calculator(T n1, T n2) : num1(n1), num2(n2) {}
+    T add() {
+        return num1 + num2;
+    }
+
+    T subtract() {
+    return num1 - num2;
+    }
+
+    T multiply() {
+        return num1 * num2;
+    }
+
+    T divide() {
+        if (num2 != 0) {
+            return num1 / num2;
+        } else {
+            cout << "Error: Division by zero!" << endl;
+            return 0;
+        }
+    }
+};
+int main() {
+    int a, b;
+    cout << "Enter two integers: ";
+    cin >> a >> b;
+
+    cout<< "Max of "<<a<<"and "<<b<<"is:"<<findMax(a, b)<< endl;
+
+  
+    Calculator<int> calcInt(a, b);
+    cout<< "Integer Operations: " << endl;
+    cout<<a<<" + "<<b<<" = "<<calcInt.add() << endl;
+    cout<<a<<" - "<<b<<" = "<<calcInt.subtract() << endl;
+    cout<<a<<" * "<<b<<" = "<<calcInt.multiply() << endl;
+    cout<<a<<" / "<<b<<" = "<<calcInt.divide() << endl;
+
+
+    float f1, f2;
+    cout << "\nEnter two float values: ";
+    cin >> f1 >> f2;
+
+    cout<< "Max of " << f1 << " and " << f2 << " is: " << findMax(f1, f2) << endl;
+    Calculator<float> calcFloat(f1, f2);
+    cout<< "Float Operations: " << endl;
+    cout<<f1<<" + "<<f2<< "= "<<calcFloat.add() << endl;
+    cout<<f1<<" - "<<f2 <<" = "<<calcFloat.subtract() << endl;
+    cout<<f1<<" * "<<f2<< " = "<<calcFloat.multiply() << endl;
+    cout<<f1<<" / "<<f2<<" = "<<calcFloat.divide() << endl;
+
+    double d1, d2;
+    cout << "\nEnter two double Values: ";
+    cin >> d1 >> d2;
+
+    
+    cout << "Max of " << d1 << " and "<< d2 << " is: " << findMax(d1, d2) << endl;
+
+  
+    Calculator<double> calcDouble(d1, d2);
+    cout<< "Double Operations: " << endl;
+    cout<< d1<<" + "<<d2<<" = "<<calcDouble.add()<< endl;
+    cout<< d1<<" - "<<d2<<" = "<<calcDouble.subtract()<< endl;
+    cout<< d1<<" * "<<d2<<" = "<<calcDouble.multiply()<< endl;
+	cout<< d1<<" / "<<d2<<" = "<<calcDouble.divide()<< endl;
+    return 0;
+}
